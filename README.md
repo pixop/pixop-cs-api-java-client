@@ -1,6 +1,10 @@
 # pixop-cs-api-java-client
 Java 8 client SDK for Pixop Video Processing REST API
 
+## Requirements
+- JDK 8
+- Maven or Gradle
+
 ## Build .jar
 Build the client .jar via Maven (`mvn clean install`) or Gradle (`./gradlew build`).
 

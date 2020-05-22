@@ -86,7 +86,12 @@ public class VideoMetadata implements java.io.Serializable {
         longCodecName = _longCodecName;
     }
 
+    public VideoPixelFormat getPixelFormat() {
+        return pixelFormat;
+    }
+
     public void setPixelFormat(final VideoPixelFormat _pixelFormat) {
+        this.pixelFormat = _pixelFormat;
         this.pixelFormatName = _pixelFormat.getName();
     }
 

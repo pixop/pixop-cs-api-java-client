@@ -265,7 +265,12 @@ public class VideoProcessingParameters implements java.io.Serializable {
             this.codec = codec;
         }
 
+        public VideoPixelFormat getPixelFormat() {
+            return pixelFormat;
+        }
+
         public void setPixelFormat(final VideoPixelFormat _pixelFormat) {
+            this.pixelFormat = _pixelFormat;
             this.pixelFormatName = _pixelFormat.getName();
         }
 

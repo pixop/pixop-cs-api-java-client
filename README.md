@@ -1,2 +1,2 @@
 # pixop-cs-api-java-client
-Java client SDK for Pixop Video Processing REST API
+Java 8 client SDK for Pixop Video Processing REST API

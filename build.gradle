@@ -1,0 +1,67 @@
+apply plugin: 'maven'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+libsDirName = '..'
+
+jar {
+    baseName = 'pixop-api-sdk'
+    version =  '1.0.0'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/'
+        }
+        resources {
+            srcDir 'src/'
+        }
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+
+    compile 'commons-io:commons-io:2.4'
+
+    compile 'org.slf4j:slf4j-api:1.7.30'
+
+    compile 'org.apache.httpcomponents:httpcore:4.4.13'
+    compile ('org.apache.httpcomponents:httpclient:4.5.12') {
+        exclude module: 'httpcore' 
+    }
+    compile 'org.apache.httpcomponents:httpmime:4.5.12'
+
+    compile 'com.fasterxml.jackson.core:jackson-core:2.10.3'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.10.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.10.3'
+}
+
+task pom {
+    doLast {
+        pom {
+            project {
+                groupId 'com.pixop'
+                artifactId 'pixop-api-sdk'
+                version '1.0.0'
+                inceptionYear '2020'
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+            }
+        }.writeTo("pom.xml")
+    }
+}
+

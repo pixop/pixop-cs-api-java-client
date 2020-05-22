@@ -90,7 +90,7 @@ public final class TestProcessVideo {
 
         System.out.println("::: got response from process video service call :: " + processVideoResponse);
 
-        // check progress every few seconds untill complete ...
+        // check progress every few seconds until complete ...
 
         final long timeStarted = System.currentTimeMillis();
 

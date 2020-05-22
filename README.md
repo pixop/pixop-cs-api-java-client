@@ -12,7 +12,7 @@ Four main test programs are included which show how to perform various common ta
 - **Process a video**: `/videos/TestProcessVideo.java`
 - **Upload/download a media file**: `/media/TestMediaService.java`
 
-Your Pixop account credentials must be set as environment variables in `PIXOP_API_EMAIL` and `PIXOP_API_PASSWORD` respectively, before running any of these.
+Your Pixop account credentials must be set as environment variables in `PIXOP_API_EMAIL` and `PIXOP_API_PASSWORD` respectively before running any of these.
 
 ## REST endpoint documentation
 

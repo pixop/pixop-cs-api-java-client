@@ -38,16 +38,15 @@ package com.pixop.sdk.services.videos.model;
  * }
  */
 
-import java.util.List;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import com.pixop.sdk.common.util.FFmpegToSDKPixelFormatSerializer;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author  Paul Cook
@@ -98,6 +97,7 @@ public class VideoProcessingParameters implements java.io.Serializable {
 
         private TargetVideo.Container container;
         private TargetVideo.Codec codec;
+        private VideoPixelFormat pixelFormat;
         private String pixelFormatName;
         private Long bitrate;
         private Integer frameWidth;
@@ -265,12 +265,17 @@ public class VideoProcessingParameters implements java.io.Serializable {
             this.codec = codec;
         }
 
+        public void setPixelFormat(final VideoPixelFormat _pixelFormat) {
+            this.pixelFormatName = _pixelFormat.getName();
+        }
+
         @JsonSerialize(using = FFmpegToSDKPixelFormatSerializer.class, contentAs = VideoPixelFormat.class)
         @JsonProperty("pixelFormat")
         public String getPixelFormatName() {
             return this.pixelFormatName;
         }
 
+        @JsonProperty("pixelFormatName")
         public void setPixelFormatName(final String pixelFormatName) {
             this.pixelFormatName = pixelFormatName;
         }

@@ -39,6 +39,7 @@ public class VideoMetadata implements java.io.Serializable {
     private String longContainerName;
     private String codecName;
     private String longCodecName;
+    private VideoPixelFormat pixelFormat;
     private String pixelFormatName;
     private Integer primaryBitDepth;
     private Integer frameWidth;
@@ -83,6 +84,10 @@ public class VideoMetadata implements java.io.Serializable {
 
     public void setLongCodecName(final String _longCodecName) {
         longCodecName = _longCodecName;
+    }
+
+    public void setPixelFormat(final VideoPixelFormat _pixelFormat) {
+        this.pixelFormatName = _pixelFormat.getName();
     }
 
     @JsonSerialize(using = FFmpegToSDKPixelFormatSerializer.class, contentAs = VideoPixelFormat.class)

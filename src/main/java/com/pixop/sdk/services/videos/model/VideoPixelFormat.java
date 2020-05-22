@@ -11,8 +11,11 @@ public class VideoPixelFormat implements java.io.Serializable {
     public static class ChromaSubsampling implements java.io.Serializable {
         private static final long serialVersionUID = 1L;
 
-        private final String yuv;
-        private final int bits;
+        private String yuv;
+        private int bits;
+
+        public ChromaSubsampling() {
+        }
 
         public ChromaSubsampling(final String yuv,
                                  final int bits) {

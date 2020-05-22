@@ -14,6 +14,6 @@ Four main test programs are included which show how to perform various common ta
 
 Your Pixop account credentials must be set as environment variables in `PIXOP_API_EMAIL` and `PIXOP_API_PASSWORD` respectively before running any of these.
 
-## REST endpoint documentation
+## REST endpoints documentation
 
 https://static.pixop.com/documentation/Pixop_Video_Processing_REST_API_staging.html

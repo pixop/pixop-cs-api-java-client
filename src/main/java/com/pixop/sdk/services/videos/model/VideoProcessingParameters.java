@@ -97,7 +97,7 @@ public class VideoProcessingParameters implements java.io.Serializable {
 
         private TargetVideo.Container container;
         private TargetVideo.Codec codec;
-        private VideoPixelFormat pixelFormat;
+        private transient VideoPixelFormat pixelFormat;
         private String pixelFormatName;
         private Long bitrate;
         private Integer frameWidth;

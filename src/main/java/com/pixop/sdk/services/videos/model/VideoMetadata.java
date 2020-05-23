@@ -39,7 +39,7 @@ public class VideoMetadata implements java.io.Serializable {
     private String longContainerName;
     private String codecName;
     private String longCodecName;
-    private VideoPixelFormat pixelFormat;
+    private transient VideoPixelFormat pixelFormat;
     private String pixelFormatName;
     private Integer primaryBitDepth;
     private Integer frameWidth;

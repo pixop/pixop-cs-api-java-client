@@ -34,7 +34,6 @@ public final class MediaServiceClient {
     public static final String DOWNLOAD_PROCESSED_MEDIA_PATH = "/media/v1/download/processed";
     public static final String DOWNLOAD_SMALL_SCREENSHOT_PATH = "/media/v1/download/screenshot/small/";
     public static final String DOWNLOAD_LARGE_SCREENSHOT_PATH = "/media/v1/download/screenshot/large/";
-    public static final String DELETE_PATH = "/media/v1/delete";
 
     public static final Charset CHARSET_UTF8 = Charset.forName("UTF-8");
 

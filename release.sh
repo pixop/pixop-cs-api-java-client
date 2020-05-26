@@ -7,7 +7,7 @@ if [[ -z "$VERSION" ]]; then
 fi
 
 mvn versions:set -DnewVersion=${VERSION} -DgenerateBackupPoms=false
-mvn clean deploy -B -P release --settings ${DIR}/settings.xml
+mvn clean deploy -P release
 git checkout .
 git tag $VERSION
 git push tags

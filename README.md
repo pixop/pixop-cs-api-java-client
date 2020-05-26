@@ -28,28 +28,27 @@ implementation 'com.pixop:pixop-api-sdk:1.0.0'
 
 ### Configure all service clients
 ```java
+    final String serviceHost = "staging-api.pixop.com";
+
     final AccountsServiceClientConfig accountsServiceClientConfig = new AccountsServiceClientConfig.Builder()
-            .setAccountsServiceHost("staging-api.pixop.com")
+            .setAccountsServiceHost(serviceHost)
             .setAccountsServicePort(443)
             .setSsl(true)
             .build();
-
     final AccountsServiceClient accountsServiceClient = new AccountsServiceClient(accountsServiceClientConfig);
 
     final VideosServiceClientConfig videosServiceClientConfig = new VideosServiceClientConfig.Builder()
-            .setVideoServiceHost("staging-api.pixop.com")
+            .setVideoServiceHost(serviceHost)
             .setVideosServicePort(443)
             .setSsl(true)
             .build();
-
     final VideosServiceClient videosServiceClient = new VideosServiceClient(videosServiceClientConfig);
 
     final MediaServiceClientConfig mediaServiceClientConfig = new MediaServiceClientConfig.Builder()
-            .setMediaServiceHost("staging-api.pixop.com")
+            .setMediaServiceHost(serviceHost)
             .setMediaServicePort(443)
             .setSsl(true)
             .build();
-
     final MediaServiceClient mediaServiceClient = new MediaServiceClient(mediaServiceClientConfig);
 ```
 
@@ -59,12 +58,14 @@ implementation 'com.pixop:pixop-api-sdk:1.0.0'
                                                                  password,
                                                                  teamId);
     final String jwtTokenString = newToken.getJwtTokenString();
+    
     // ... do something useful with token
 ```
 
 ### Look up video
 ```java    
     final Video video = videosServiceClient.getVideo(videoId, jwtTokenString).getVideo();
+    
     // ... do something useful with video
 ```
 

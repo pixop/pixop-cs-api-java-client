@@ -24,6 +24,51 @@ Gradle Groovy DSL:
 implementation 'com.pixop:pixop-api-sdk:1.0.0'
 ```
 
+## Basic concepts
+
+### Configure all service clients
+```java
+    final AccountsServiceClientConfig accountsServiceClientConfig = new AccountsServiceClientConfig.Builder()
+            .setAccountsServiceHost("staging-api.pixop.com")
+            .setAccountsServicePort(443)
+            .setSsl(true)
+            .build();
+
+    final AccountsServiceClient accountsServiceClient = new AccountsServiceClient(accountsServiceClientConfig);
+
+    final VideosServiceClientConfig videosServiceClientConfig = new VideosServiceClientConfig.Builder()
+            .setVideoServiceHost("staging-api.pixop.com")
+            .setVideosServicePort(443)
+            .setSsl(true)
+            .build();
+
+    final VideosServiceClient videosServiceClient = new VideosServiceClient(videosServiceClientConfig);
+
+    final MediaServiceClientConfig mediaServiceClientConfig = new MediaServiceClientConfig.Builder()
+            .setMediaServiceHost("staging-api.pixop.com")
+            .setMediaServicePort(443)
+            .setSsl(true)
+            .build();
+
+    final MediaServiceClient mediaServiceClient = new MediaServiceClient(mediaServiceClientConfig);
+```
+
+### Authenticate and acquire token
+```java
+    final NewAuthToken newToken = accountsServiceClient.newToken(email,
+                                                                 password,
+                                                                 teamId);
+    final String jwtTokenString = newToken.getJwtTokenString();
+```
+
+### Look up video
+```java
+    final Video video = videosServiceClient.getVideo(videoId, jwtTokenString).getVideo();
+
+    // do something useful with video
+    System.out.println("Got video [ " + videoId + " ] :: " + video.toString());
+```
+
 ## Test programs
 Four main test programs are included which show how to perform various common tasks (in `src/com/pixop/sdk/services`):
 

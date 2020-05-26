@@ -6,7 +6,51 @@
   <groupId>com.pixop</groupId>
   <artifactId>pixop-api-sdk</artifactId>
   <version>1.0.0</version>
-  <name>api-sdk</name>
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>Pixop Video Processing API client SDK for Java 8</description>
+  <url>https://github.com/pixop/pixop-cs-api-java-client</url>
+
+  <!-- License for the project, pick a License from opensource.org -->
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <!-- Contact for developers on project -->
+  <developers>
+    <developer>
+      <name>Jon Frydensbjerg</name>
+      <email>jonf@vip.cybercity.dk</email>
+      <!-- Your organization, or Github is fine too -->
+      <organization>Github</organization>
+      <!-- URL for Organization, URL to your github profile work well here -->
+      <organizationUrl>https://github.com/jonfryd</organizationUrl>
+    </developer>
+  </developers>
+
+  <!-- Source Control Information, Github Stuff -->
+  <scm>
+    <!-- Should be format scm:git:git or scm:git:https -->
+    <connection>scm:git:https://github.com/pixop/pixop-cs-api-java-client.git</connection>
+    <developerConnection>scm:git:ssh://github.com/pixop/pixop-cs-api-java-client.git</developerConnection>
+    <url>github.com/pixop/pixop-cs-api-java-client</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <!-- We are deploying to Sonatype, so enter Sonatype Distribution Stuff Here -->
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -73,4 +117,65 @@
        </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.0.0</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>3.0.1</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.8</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

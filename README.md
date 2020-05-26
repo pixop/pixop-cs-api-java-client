@@ -6,8 +6,23 @@ Java 8 client SDK for Pixop Video Processing REST API
 - JDK 8
 - Maven or Gradle
 
-## Build .jar
+## Build .jar locally
 Build the client .jar via Maven (`mvn clean install`) or Gradle (`./gradlew build`).
+
+## Dependency
+For Apache Maven pom-file:
+```xml
+    <dependency>
+      <groupId>com.pixop</groupId>
+      <artifactId>pixop-api-sdk</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+```
+
+Gradle Groovy DSL:
+```
+implementation 'com.pixop:pixop-api-sdk:1.0.0'
+```
 
 ## Test programs
 Four main test programs are included which show how to perform various common tasks (in `src/com/pixop/sdk/services`):

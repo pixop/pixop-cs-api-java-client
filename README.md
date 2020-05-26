@@ -24,7 +24,7 @@ Gradle Groovy DSL:
 implementation 'com.pixop:pixop-api-sdk:1.0.0'
 ```
 
-## Basic concepts
+## Essential concepts
 
 ### Configure all service clients
 ```java
@@ -59,14 +59,13 @@ implementation 'com.pixop:pixop-api-sdk:1.0.0'
                                                                  password,
                                                                  teamId);
     final String jwtTokenString = newToken.getJwtTokenString();
+    // ... do something useful with token
 ```
 
 ### Look up video
-```java
+```java    
     final Video video = videosServiceClient.getVideo(videoId, jwtTokenString).getVideo();
-
-    // do something useful with video
-    System.out.println("Got video [ " + videoId + " ] :: " + video.toString());
+    // ... do something useful with video
 ```
 
 ## Test programs

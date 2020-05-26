@@ -26,7 +26,7 @@ implementation 'com.pixop:pixop-api-sdk:1.0.0'
 
 ## Essential concepts
 
-### Configure all service clients
+### Configure all web service clients
 ```java
     final String serviceHost = "staging-api.pixop.com";
 

@@ -52,11 +52,11 @@ implementation 'com.pixop:pixop-api-sdk:1.0.0'
     final MediaServiceClient mediaServiceClient = new MediaServiceClient(mediaServiceClientConfig);
 ```
 
-### Authenticate and acquire token
+### Authenticate and acquire token for default team
 ```java
     final NewAuthToken newToken = accountsServiceClient.newToken(email,
                                                                  password,
-                                                                 teamId);
+                                                                 null);
     final String jwtTokenString = newToken.getJwtTokenString();
     
     // ... do something useful with token

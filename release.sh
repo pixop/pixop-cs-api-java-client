@@ -10,4 +10,4 @@ mvn versions:set -DnewVersion=${VERSION} -DgenerateBackupPoms=false
 mvn clean deploy -P release
 git checkout .
 git tag $VERSION
-git push tags
+git push --tags

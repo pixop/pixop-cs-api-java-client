@@ -2,47 +2,47 @@ package com.pixop.sdk.services.videos.request;
 /*
  * ProcessVideoRequest.java
  *
- * {
- *  "media_container_codec": {
- *     "container": "mov",
- *     "codec": "h264"
- *  },
- *  "apple_prores_profile": "422_standard",
- *  "dnxhd_hr_profile": "dnxhr_high_8bit",
- *  "chroma_subsampling": {
- *      "yuv": "444",
- *      "bits": 16
- *  },
- *  "bitrate": {
- *      "mbps": "181.5"
- *  },
- *  "deinterlacer": "yadif",
- *  "denoiser": "3d_denoiser",
- *  "stabilizer": "pixop_dejittering",
- *  "scaler": "pixop_super_resolution",
- *  "resolution": {
- *      "tag": "1080p",
- *      "width": "576",
- *      "height": "420"
- *  },
- *  "clarity_boost": "low",
- *  "range": {
- *      "start_position_milliseconds": 0,
- *      "end_position_milliseconds": 30
+ *  {
+ *    "mediaContainerCodec": {
+ *      "container": "mov",
+ *       "codec": "h264"
+ *    },
+ *    "appleProresProfile": "standard",
+ *    "dnxhdHrProfile": "dnxhd_sq",
+ *    "chromaSubsampling": {
+ *      "yuv": "4:2:2",
+ *      "bits": 8
+ *    },
+ *    "bitrate": {
+ *      "mbps": 20.5
+ *    },
+ *    "deinterlacer": "deint",
+ *    "denoiser": "hqdn3d",
+ *    "stabilizer": "dejit",
+ *    "scaler": "pabsr1",
+ *    "resolution": {
+ *      "tag": "hd_1080p",
+ *      "width": 1920,
+ *      "height": 1080
+ *    },
+ *    "clarityBoost": "low",
+ *    "range": {
+ *      "startPositionMilliseconds": 0,
+ *      "endPositionMilliseconds": 30000
+ *    }
  *  }
- *
  */
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author  Paul Cook
@@ -685,7 +685,9 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
     public static enum DE_INTERLACER {
 
+        PIXOP_DEINTERLACING("deint"),
         YADIF("yadif"),
+        BWDIT("bwdif"),
         WESTON_3_FIELD("weston3f");
 
         private final String name;

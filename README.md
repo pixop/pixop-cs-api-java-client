@@ -6,8 +6,68 @@ Java 8 client SDK for Pixop Video Processing REST API
 - JDK 8
 - Maven or Gradle
 
-## Build .jar
+## Build .jar locally
 Build the client .jar via Maven (`mvn clean install`) or Gradle (`./gradlew build`).
+
+## Dependency
+For Apache Maven pom-file:
+```xml
+    <dependency>
+      <groupId>com.pixop</groupId>
+      <artifactId>pixop-api-sdk</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+```
+
+Gradle Groovy DSL:
+```
+implementation 'com.pixop:pixop-api-sdk:1.0.0'
+```
+
+## Essential concepts
+
+### Configure all web service clients
+```java
+    final String serviceHost = "staging-api.pixop.com";
+
+    final AccountsServiceClientConfig accountsServiceClientConfig = new AccountsServiceClientConfig.Builder()
+            .setAccountsServiceHost(serviceHost)
+            .setAccountsServicePort(443)
+            .setSsl(true)
+            .build();
+    final AccountsServiceClient accountsServiceClient = new AccountsServiceClient(accountsServiceClientConfig);
+
+    final VideosServiceClientConfig videosServiceClientConfig = new VideosServiceClientConfig.Builder()
+            .setVideoServiceHost(serviceHost)
+            .setVideosServicePort(443)
+            .setSsl(true)
+            .build();
+    final VideosServiceClient videosServiceClient = new VideosServiceClient(videosServiceClientConfig);
+
+    final MediaServiceClientConfig mediaServiceClientConfig = new MediaServiceClientConfig.Builder()
+            .setMediaServiceHost(serviceHost)
+            .setMediaServicePort(443)
+            .setSsl(true)
+            .build();
+    final MediaServiceClient mediaServiceClient = new MediaServiceClient(mediaServiceClientConfig);
+```
+
+### Authenticate and acquire token for default team
+```java
+    final NewAuthToken newToken = accountsServiceClient.newToken(email,
+                                                                 password,
+                                                                 null);
+    final String jwtTokenString = newToken.getJwtTokenString();
+    
+    // ... do something useful with token
+```
+
+### Look up video
+```java    
+    final Video video = videosServiceClient.getVideo(videoId, jwtTokenString).getVideo();
+    
+    // ... do something useful with video
+```
 
 ## Test programs
 Four main test programs are included which show how to perform various common tasks (in `src/com/pixop/sdk/services`):

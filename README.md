@@ -2,7 +2,7 @@
 Java 8 client SDK for Pixop Video Processing REST API
 
 ## Requirements
-- A valid Pixop staging environment account (contact support@pixop.com)
+- A valid Pixop staging environment account (contact help@pixop.com)
 - JDK 8
 - Maven or Gradle
 

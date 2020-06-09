@@ -82,7 +82,7 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
 
 ### Upload video file
 ```java
-    // future callback class for handling success, exception and failure
+    // callback class for handling success, exception and failure
     public static final class TestUploadFuture extends UploadFuture {
         private final String videoId;
         private final String uploadFileName;
@@ -188,7 +188,7 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
 
 ### Download processed video
 ```java
-    // future callback class for handling success, exception and failure
+    // callback class for handling success, exception and failure
     public static final class TestDownloadFuture extends DownloadFuture {
         private final String videoId;
         private final String localFileName;

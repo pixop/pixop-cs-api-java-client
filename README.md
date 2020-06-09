@@ -69,6 +69,17 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
     // ... do something useful with video
 ```
 
+### Create new project and add new video into it
+```java
+    ProjectResponse addProjectResponse = videosServiceClient.addProject("my project", jwtTokenString);
+    final String projectId = addProjectResponse.getProject().getId();
+
+    AddVideoResponse addVideoResponse = videosServiceClient.addVideo("my video", projectId, jwtTokenString);
+    final String videoId = addVideoResponse.getVideoId();
+
+    // ... upload media
+```
+
 ### Upload video file
 ```java
     // future callback class for handling success, exception and failure
@@ -123,6 +134,8 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
     if (!uploadFuture.isSuccess())
         // ... handle failure
     }
+
+    // ... wait for ingestion, then process video
 ```
 
 ### Process video
@@ -159,7 +172,7 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
         final VideoProcessingState processingState = checkProgressResponse.getProcessingState();
         if (processingState != null && processingState.getProcessingStatus() != null) {
             if (processingState.getProcessingStatus().equalsIgnoreCase("DONE")) {
-                // ... handle success
+                // ... handle success (e.g. download processed video)
                 break;
             } else if (processingState.getProcessingStatus().equalsIgnoreCase("ERROR")) {
                 // ... handle error
@@ -226,6 +239,15 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
     if (!downloadFuture.isSuccess())
         // ... handle failure
     }
+```
+
+### Clean up video and project
+```java
+    // note: also deletes any processed media
+    videosServiceClient.deleteVideo(videoId, jwtTokenString);
+
+    // deleting the project is possible when all video has been removed
+    videosServiceClient.deleteProject(projectId, jwtTokenString);
 ```
 
 ## Test programs

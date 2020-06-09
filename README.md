@@ -141,18 +141,18 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
 ### Process video
 ```java
     final ProcessVideoRequest processVideoRequest = new ProcessVideoRequest.Builder()
-                                                 .withMediaContainerCodec(new MediaContainerCodec(CONTAINER.QUICKTIME_MOV,
-                                                                                                  CODEC.APPLE_PRORES))
-                                                 .withAppleProResProfile(APPLE_PRORES_PROFILE.PROFILE_STANDARD)
-                                                 .withDenoiser(DE_NOISER.THREE_D_DENOISER)
-                                                 .withScaler(SCALER.PIXOP_SUPER_RESOLUTION)
-                                                 .withResolution(new Resolution(RESOLUTION_TAG.RESOLUTION_HD_1080P))
-                                                 .withClarityBoost(CLARITY_BOOST.HIGH)
-                                                 .withRange(new Range.Builder()
-                                                                     .withStartPositionMilliseconds(0)
-                                                                     .withEndPositionMilliseconds(5000)
-                                                                     .build())
-                                                 .build();
+         .withMediaContainerCodec(new MediaContainerCodec(CONTAINER.QUICKTIME_MOV,
+                                                          CODEC.APPLE_PRORES))
+         .withAppleProResProfile(APPLE_PRORES_PROFILE.PROFILE_STANDARD)
+         .withDenoiser(DE_NOISER.THREE_D_DENOISER)
+         .withScaler(SCALER.PIXOP_SUPER_RESOLUTION)
+         .withResolution(new Resolution(RESOLUTION_TAG.RESOLUTION_HD_1080P))
+         .withClarityBoost(CLARITY_BOOST.HIGH)
+         .withRange(new Range.Builder()
+                             .withStartPositionMilliseconds(0)
+                             .withEndPositionMilliseconds(5000)
+                             .build())
+         .build();
 
     final ProcessVideoResponse processVideoResponse = videosServiceClient.processVideo(videoId,
                                                                                        processVideoRequest,

@@ -163,13 +163,9 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
 ### Wait for processing to complete
 ```java
     // NB: similar code can be used to wait for ingestion
-    final long timeStarted = System.currentTimeMillis();
-
     final String newVideoId = processVideoResponse.getProcessedVideoId();
 
     for (;;) {
-        final long timeRunning = System.currentTimeMillis() - timeStarted;
-
         final ProcessVideoCheckProgressResponse checkProgressResponse = videosServiceClient.processVideoCheckProgress(newVideoId, jwtTokenString);
 
         final VideoProcessingState processingState = checkProgressResponse.getProcessingState();

@@ -140,6 +140,8 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
                                                                      .withEndPositionMilliseconds(5000)
                                                                      .build())
                                                  .build();
+                                                 
+    // ... wait for processing to complete                                              
 ```
 
 ### Wait for processing to complete

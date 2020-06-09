@@ -69,6 +69,163 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
     // ... do something useful with video
 ```
 
+### Upload video file
+```java
+    // future callback class for handling success, exception and failure
+    public static final class TestUploadFuture extends UploadFuture {
+        private final String videoId;
+        private final String uploadFileName;
+
+        public TestUploadFuture(final String videoId,
+                                final String uploadFileName) {
+            super();
+            this.videoId = videoId;
+            this.uploadFileName = uploadFileName;
+        }
+
+        @Override
+        public void onSuccess() {
+            // ... handle success
+        }
+
+        @Override
+        public void onException(final Exception exception) {
+            // ... handle exception
+        }
+
+        @Override
+        public void onFailure(final int status, final String resultMessage) {
+            // ... handle failure
+        }
+    }
+
+    // main upload logic
+    final String sourceFileName = "small.mp4";
+    final File sourceFile = new File(sourceFileName);
+
+    final UploadFuture uploadFuture = new TestUploadFuture(videoId,
+                                                           sourceFileName);
+
+    mediaServiceClient.uploadFromFile(videoId,
+                                      jwtTokenString,
+                                      false,
+                                      sourceFile,
+                                      uploadFuture);
+
+    synchronized(uploadFuture) {
+        try {
+            uploadFuture.wait(600_000); // wait 10 minutes at most
+        } catch (final Exception e) {
+            // ... handle timeout
+        }
+    }
+
+    if (!uploadFuture.isSuccess())
+        // ... handle failure
+    }
+```
+
+### Process video
+```java
+    final ProcessVideoRequest processVideoRequest = new ProcessVideoRequest.Builder()
+                                                 .withMediaContainerCodec(new MediaContainerCodec(CONTAINER.QUICKTIME_MOV,
+                                                                                                  CODEC.APPLE_PRORES))
+                                                 .withAppleProResProfile(APPLE_PRORES_PROFILE.PROFILE_STANDARD)
+                                                 .withDenoiser(DE_NOISER.THREE_D_DENOISER)
+                                                 .withScaler(SCALER.PIXOP_SUPER_RESOLUTION)
+                                                 .withResolution(new Resolution(RESOLUTION_TAG.RESOLUTION_HD_1080P))
+                                                 .withClarityBoost(CLARITY_BOOST.HIGH)
+                                                 .withRange(new Range.Builder()
+                                                                     .withStartPositionMilliseconds(0)
+                                                                     .withEndPositionMilliseconds(5000)
+                                                                     .build())
+                                                 .build();
+```
+
+### Wait for processing to complete
+```java
+    // NB: similar code can be used to wait for ingestion
+    final long timeStarted = System.currentTimeMillis();
+
+    final String newVideoId = processVideoResponse.getProcessedVideoId();
+
+    for (;;) {
+        final long timeRunning = System.currentTimeMillis() - timeStarted;
+
+        final ProcessVideoCheckProgressResponse checkProgressResponse = videosServiceClient.processVideoCheckProgress(newVideoId, jwtTokenString);
+
+        final VideoProcessingState processingState = checkProgressResponse.getProcessingState();
+        if (processingState != null && processingState.getProcessingStatus() != null) {
+            if (processingState.getProcessingStatus().equalsIgnoreCase("DONE")) {
+                // ... handle success
+                break;
+            } else if (processingState.getProcessingStatus().equalsIgnoreCase("ERROR")) {
+                // ... handle error
+                break;
+            }
+        }
+
+        try {
+            Thread.sleep(10_000); // wait 10 secs
+        } catch (final InterruptedException e) {}
+    }
+```
+
+### Download processed video
+```java
+    // future callback class for handling success, exception and failure
+    public static final class TestDownloadFuture extends DownloadFuture {
+        private final String videoId;
+        private final String localFileName;
+
+        public TestDownloadFuture(final String videoId,
+                                  final String localFileName) {
+            super();
+            this.videoId = videoId;
+            this.localFileName = localFileName;
+        }
+
+        @Override
+        public void onSuccess() {
+            // ... handle success
+        }
+
+        @Override
+        public void onException(final Exception exception) {
+            // ... handle exception
+        }
+
+        @Override
+        public void onFailure(final int status, final String resultMessage) {
+            // ... handle failure
+        }
+    }
+
+    // main download logic
+    final String localFileName = "small_processed.mp4";
+    final FileOutputStream outputStream = new FileOutputStream(new File(localFileName));
+
+    final DownloadFuture downloadFuture = new TestDownloadFuture(videoId,
+                                                                 localFileName);
+
+    mediaServiceClient.downloadProcessedMedia(videoId,
+                                              jwtTokenString,
+                                              outputStream,
+                                              downloadFuture);
+
+    synchronized(downloadFuture) {
+        try {
+            downloadFuture.wait(600_000); // wait 10 minutes at most
+        } catch (final Exception e) {
+            // ... handle timeout
+        }
+    }
+
+    if (!downloadFuture.isSuccess())
+        // ... handle failure
+    }
+```
+
 ## Test programs
 Four main test programs are included which show how to perform various common tasks (in `src/com/pixop/sdk/services`):
 

@@ -153,7 +153,10 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
                                                                      .withEndPositionMilliseconds(5000)
                                                                      .build())
                                                  .build();
-                                                 
+
+    final ProcessVideoResponse processVideoResponse = videosServiceClient.processVideo(videoId,
+                                                                                       processVideoRequest,
+                                                                                       jwtTokenString);
     // ... wait for processing to complete                                              
 ```
 

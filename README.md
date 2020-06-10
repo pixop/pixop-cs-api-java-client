@@ -24,7 +24,7 @@ Gradle Groovy DSL:
 implementation 'com.pixop:pixop-api-sdk:1.1.0'
 ```
 
-## Essential concepts
+## Essential snippets
 
 ### Configure all web service clients
 ```java

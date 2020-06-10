@@ -59,7 +59,7 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
                                                                  null);
     final String jwtTokenString = newToken.getJwtTokenString();
     
-    // ... do something useful with token
+    // ... do something useful with token (it expires in 15 min)
 ```
 
 ### Look up video

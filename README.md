@@ -150,7 +150,7 @@ implementation 'com.pixop:pixop-api-sdk:1.1.0'
          .withClarityBoost(CLARITY_BOOST.HIGH)
          .withRange(new Range.Builder()
                              .withStartPositionMilliseconds(0)
-                             .withEndPositionMilliseconds(5000)
+                             .withEndPositionMilliseconds(5_000)
                              .build())
          .build();
 

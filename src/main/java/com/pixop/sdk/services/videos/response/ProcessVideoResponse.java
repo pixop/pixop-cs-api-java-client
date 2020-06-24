@@ -26,23 +26,23 @@ public final class ProcessVideoResponse implements java.io.Serializable {
     @JsonProperty("projectId")
     private final String projectId;
 
-    @JsonProperty("downloadMediaUrl")
-    private final String downloadMediaUrl;
-
     @JsonProperty("checkProgressUrl")
     private final String checkProgressUrl;
+
+    @JsonProperty("downloadMediaUrl")
+    private final String downloadMediaUrl;
 
     @JsonCreator
     public ProcessVideoResponse(@JsonProperty("sourceVideoId")final String sourceVideoId,
                                 @JsonProperty("processedVideoId")final String processedVideoId,
                                 @JsonProperty("projectId")final String projectId,
-                                @JsonProperty("downloadMediaUrl")final String downloadMediaUrl,
-                                @JsonProperty("checkProgressUrl")final String checkProgressUrl) {
+                                @JsonProperty("checkProgressUrl")final String checkProgressUrl,
+                                @JsonProperty("downloadMediaUrl")final String downloadMediaUrl) {
         this.sourceVideoId = sourceVideoId;
         this.processedVideoId = processedVideoId;
         this.projectId = projectId;
-        this.downloadMediaUrl = downloadMediaUrl;
         this.checkProgressUrl = checkProgressUrl;
+        this.downloadMediaUrl = downloadMediaUrl;
     }
 
     public String getSourceVideoId() {
@@ -57,12 +57,12 @@ public final class ProcessVideoResponse implements java.io.Serializable {
         return this.projectId;
     }
 
-    public String getDownloadMediaUrl() {
-        return this.downloadMediaUrl;
-    }
-
     public String getCheckProgressUrl() {
         return this.checkProgressUrl;
+    }
+
+    public String getDownloadMediaUrl() {
+        return this.downloadMediaUrl;
     }
 
     @Override

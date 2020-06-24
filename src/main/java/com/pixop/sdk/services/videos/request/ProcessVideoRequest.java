@@ -712,6 +712,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
     public static enum DE_NOISER {
 
+        PIXOP_DENOSING("denoise"),
         THREE_D_DENOISER("hqdn3d");
 
         private final String name;

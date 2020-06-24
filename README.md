@@ -144,7 +144,7 @@ implementation 'com.pixop:pixop-api-sdk:1.2.1'
          .withMediaContainerCodec(new MediaContainerCodec(CONTAINER.QUICKTIME_MOV,
                                                           CODEC.APPLE_PRORES))
          .withAppleProResProfile(APPLE_PRORES_PROFILE.PROFILE_STANDARD)
-         .withDenoiser(DE_NOISER.THREE_D_DENOISER)
+         .withDenoiser(DE_NOISER.PIXOP_DENOSING)
          .withScaler(SCALER.PIXOP_SUPER_RESOLUTION)
          .withResolution(new Resolution(RESOLUTION_TAG.RESOLUTION_HD_1080P))
          .withClarityBoost(CLARITY_BOOST.HIGH)

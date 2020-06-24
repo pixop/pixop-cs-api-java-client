@@ -8,7 +8,7 @@ libsDirName = '..'
 
 jar {
     baseName = 'pixop-api-sdk'
-    version =  '1.2.0'
+    version =  '1.2.1'
 }
 
 sourceSets {
@@ -51,7 +51,7 @@ task pom {
             project {
                 groupId 'com.pixop'
                 artifactId 'pixop-api-sdk'
-                version '1.2.0'
+                version '1.2.1'
                 inceptionYear '2020'
                 licenses {
                     license {

@@ -15,13 +15,13 @@ For Apache Maven pom-file:
     <dependency>
       <groupId>com.pixop</groupId>
       <artifactId>pixop-api-sdk</artifactId>
-      <version>1.3.0</version>
+      <version>2.0.0</version>
     </dependency>
 ```
 
 Gradle Groovy DSL:
 ```
-implementation 'com.pixop:pixop-api-sdk:1.3.0'
+implementation 'com.pixop:pixop-api-sdk:2.0.0'
 ```
 
 ## Essential snippets
@@ -144,7 +144,7 @@ implementation 'com.pixop:pixop-api-sdk:1.3.0'
          .withMediaContainerCodec(new MediaContainerCodec(CONTAINER.QUICKTIME_MOV,
                                                           CODEC.APPLE_PRORES))
          .withAppleProResProfile(APPLE_PRORES_PROFILE.PROFILE_STANDARD)
-         .withDenoiser(DE_NOISER.PIXOP_DENOSING)
+         .withDenoiser(DE_NOISER.PIXOP_DENOISER)
          .withScaler(SCALER.PIXOP_SUPER_RESOLUTION)
          .withResolution(new Resolution(RESOLUTION_TAG.RESOLUTION_HD_1080P))
          .withClarityBoost(CLARITY_BOOST.HIGH)

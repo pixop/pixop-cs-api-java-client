@@ -555,11 +555,13 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         @JsonProperty("mbps")
         private final Double mbps;
 
-        public static final BitRate BITRATE_90_8 = new BitRate(90.8);
-        public static final BitRate BITRATE_136_1 = new BitRate(136.1);
-        public static final BitRate BITRATE_181_5 = new BitRate(181.5);
-        public static final BitRate BITRATE_272_3 = new BitRate(272.3);
-        public static final BitRate BITRATE_363_0 = new BitRate(363.0);
+        public static final BitRate BITRATE_5M = new BitRate(5.0);
+        public static final BitRate BITRATE_10M = new BitRate(10.0);
+        public static final BitRate BITRATE_30M = new BitRate(30.0);
+        public static final BitRate BITRATE_50M = new BitRate(50.0);
+        public static final BitRate BITRATE_100M = new BitRate(100.0);
+        public static final BitRate BITRATE_300M = new BitRate(300.0);
+        public static final BitRate BITRATE_1G = new BitRate(1000.0);
 
         @JsonCreator
         private BitRate(@JsonProperty("mbps")final Double mbps) {
@@ -685,7 +687,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
     public static enum DE_INTERLACER {
 
-        PIXOP_DEINTERLACING("deint"),
+        PIXOP_DEINTERLACER("deint"),
         YADIF("yadif"),
         BWDIT("bwdif"),
         WESTON_3_FIELD("weston3f");
@@ -712,7 +714,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
     public static enum DE_NOISER {
 
-        PIXOP_DENOSING("denoise"),
+        PIXOP_DENOISER("denoise"),
         THREE_D_DENOISER("hqdn3d");
 
         private final String name;
@@ -737,7 +739,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
     public static enum STABILIZER {
 
-        PIXOP_DEJITTERING("dejit");
+        PIXOP_DEJITTERER("dejit");
 
         private final String name;
 

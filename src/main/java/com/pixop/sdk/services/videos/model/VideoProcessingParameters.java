@@ -90,11 +90,12 @@ public class VideoProcessingParameters implements java.io.Serializable {
     }
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonPropertyOrder({ "container", "codec", "pixelFormat", "bitrate", "frameWidth", "frameHeight", "averageFramerate", "videoFilters" })
+    @JsonPropertyOrder({ "preset", "container", "codec", "pixelFormat", "bitrate", "frameWidth", "frameHeight", "averageFramerate", "videoFilters" })
     public static final class TargetVideo implements java.io.Serializable {
 
         private static final long serialVersionUID = 4557458049750531341L;
 
+        private TargetVideo.Preset preset;
         private TargetVideo.Container container;
         private TargetVideo.Codec codec;
         private transient VideoPixelFormat pixelFormat;
@@ -177,7 +178,6 @@ public class VideoProcessingParameters implements java.io.Serializable {
 
         }
 
-
         @JsonInclude(JsonInclude.Include.NON_NULL)
         public static final class VideoFilter implements java.io.Serializable {
 
@@ -245,9 +245,44 @@ public class VideoProcessingParameters implements java.io.Serializable {
 
         }
 
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        public static final class Preset implements java.io.Serializable {
+            private static final long serialVersionUID = -1835139857163475887L ;
+
+            private String id;
+            private String name;
+
+            public Preset() {
+            }
+
+            public String getId() {
+                return this.id;
+            }
+
+            public void setId(final String id) {
+                this.id = id;
+            }
+
+            public String getName() {
+                return this.name;
+            }
+
+            public void setName(final String name) {
+                this.name = name;
+            }
+        }
+
         public TargetVideo() {
         }
 
+
+        public Preset getPreset() {
+            return preset;
+        }
+
+        public void setPreset(final Preset preset) {
+            this.preset = preset;
+        }
 
         public TargetVideo.Container getContainer() {
             return this.container;

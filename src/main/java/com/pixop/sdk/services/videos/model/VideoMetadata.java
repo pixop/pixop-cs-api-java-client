@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import com.pixop.sdk.common.util.FFmpegToSDKPixelFormatSerializer;
 
 /**
@@ -30,11 +29,10 @@ import com.pixop.sdk.common.util.FFmpegToSDKPixelFormatSerializer;
  * @version
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "containerName", "longContainerName", "codecName", "longCodecName", "pixelFormat", "primaryBitDepth", "frameWidth", "frameHeight", "displayAspectRatio", "averageFramerate", "durationInMillis", "totalFrames", "size", "videoStreamSize" })
+@JsonPropertyOrder({ "containerName", "longContainerName", "codecName", "longCodecName", "pixelFormat", "primaryBitDepth", "frameWidth", "frameHeight", "displayAspectRatio", "scanning", "averageFramerate", "durationInMillis", "totalFrames", "size", "videoStreamSize" })
 public class VideoMetadata implements java.io.Serializable {
 
     private static final long serialVersionUID = 5489292996527754799L;
-
     private String containerName;
     private String longContainerName;
     private String codecName;
@@ -45,6 +43,7 @@ public class VideoMetadata implements java.io.Serializable {
     private Integer frameWidth;
     private Integer frameHeight;
     private Double displayAspectRatio;
+    private VideoScanning scanning;
     private Double averageFramerate;
     private Long durationInMillis;
     private Integer totalFrames;
@@ -136,6 +135,14 @@ public class VideoMetadata implements java.io.Serializable {
 
     public void setDisplayAspectRatio(final Double _displayAspectRatio) {
         displayAspectRatio = _displayAspectRatio;
+    }
+
+    public VideoScanning getScanning() {
+        return scanning;
+    }
+
+    public void setScanning(final VideoScanning _videoVideoScanning) {
+        scanning = _videoVideoScanning;
     }
 
     public Double getAverageFramerate() {

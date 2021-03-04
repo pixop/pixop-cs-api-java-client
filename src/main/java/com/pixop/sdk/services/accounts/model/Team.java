@@ -1,13 +1,13 @@
 package com.pixop.sdk.services.accounts.model;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.Date;
 
 /**
  * @author  Paul Cook
@@ -24,9 +24,6 @@ public final class Team implements java.io.Serializable {
     @JsonProperty("name")
     private final String name;
 
-    @JsonProperty("restricted")
-    private final boolean restricted;
-
     @JsonProperty("dateCreated")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private final Date dateCreated;
@@ -38,12 +35,10 @@ public final class Team implements java.io.Serializable {
     @JsonCreator
     public Team(@JsonProperty("id")final String id,
                 @JsonProperty("name")final String name,
-                @JsonProperty("restricted")final boolean restricted,
                 @JsonProperty("dateCreated")@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")final Date dateCreated,
                 @JsonProperty("timeLastUpdated")@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")final Date timeLastModified) {
         this.id = id;
         this.name = name;
-        this.restricted = restricted;
         this.dateCreated = dateCreated;
         this.timeLastModified = timeLastModified;
     }
@@ -54,10 +49,6 @@ public final class Team implements java.io.Serializable {
 
     public String getName() {
         return this.name;
-    }
-
-    public boolean isRestricted() {
-        return this.restricted;
     }
 
     public Date getDateCreated() {

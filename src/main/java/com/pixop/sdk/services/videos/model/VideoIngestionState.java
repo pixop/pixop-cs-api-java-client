@@ -3,7 +3,6 @@ package com.pixop.sdk.services.videos.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import com.pixop.sdk.common.util.ISODateToSDKDateSerializer;
 
 /*
@@ -16,6 +15,7 @@ import com.pixop.sdk.common.util.ISODateToSDKDateSerializer;
  *  "thumbnailsAvailable": true,
  *  "fullFramesAvailable": true,
  *  "videoMetadataAvailable": true,
+ *  "videoMetadataCommitted": true,
  *  "processingProgressPercent": 100
  * }
  */
@@ -33,6 +33,7 @@ public class VideoIngestionState implements java.io.Serializable {
     private Boolean thumbnailsAvailable;
     private Boolean fullFramesAvailable;
     private Boolean videoMetadataAvailable;
+    private Boolean videoMetadataCommitted;
     private Integer processingProgressPercent;
 
     public VideoIngestionState() {
@@ -107,6 +108,15 @@ public class VideoIngestionState implements java.io.Serializable {
 
     public void setVideoMetadataAvailable(final Boolean videoMetadataAvailable) {
         this.videoMetadataAvailable = videoMetadataAvailable;
+    }
+
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    public Boolean isVideoMetadataCommitted() {
+        return this.videoMetadataCommitted;
+    }
+
+    public void setVideoMetadataCommitted(final Boolean videoMetadataCommitted) {
+        this.videoMetadataCommitted = videoMetadataCommitted;
     }
 
     public Integer getProcessingProgressPercent() {

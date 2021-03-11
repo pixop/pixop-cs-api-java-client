@@ -90,7 +90,7 @@ public class VideoProcessingParameters implements java.io.Serializable {
     }
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonPropertyOrder({ "preset", "container", "codec", "pixelFormat", "bitrate", "frameWidth", "frameHeight", "averageFramerate", "videoFilters" })
+    @JsonPropertyOrder({ "preset", "container", "codec", "scanning", "pixelFormat", "bitrate", "frameWidth", "frameHeight", "averageFramerate", "videoFilters" })
     public static final class TargetVideo implements java.io.Serializable {
 
         private static final long serialVersionUID = 4557458049750531341L;
@@ -98,6 +98,7 @@ public class VideoProcessingParameters implements java.io.Serializable {
         private TargetVideo.Preset preset;
         private TargetVideo.Container container;
         private TargetVideo.Codec codec;
+        private ScanningContext scanning;
         private transient VideoPixelFormat pixelFormat;
         private String pixelFormatName;
         private Long bitrate;
@@ -298,6 +299,14 @@ public class VideoProcessingParameters implements java.io.Serializable {
 
         public void setCodec(final TargetVideo.Codec codec) {
             this.codec = codec;
+        }
+
+        public ScanningContext getScanning() {
+            return scanning;
+        }
+
+        public void setScanning(final ScanningContext _scanning) {
+            scanning = _scanning;
         }
 
         public VideoPixelFormat getPixelFormat() {

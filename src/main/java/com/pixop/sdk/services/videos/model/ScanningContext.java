@@ -15,10 +15,10 @@ public class ScanningContext implements java.io.Serializable {
     private InterlacedFieldOrder interlacedFieldOrder;
 
     @JsonCreator
-    public ScanningContext(@JsonProperty("scanningType") final ScanningType _scanningType,
-                           @JsonProperty("interlacedFieldOrder") final InterlacedFieldOrder _interlacedFieldOrder) {
-        scanningType = _scanningType;
-        interlacedFieldOrder = _interlacedFieldOrder;
+    public ScanningContext(@JsonProperty("scanningType") final String _scanningType,
+                           @JsonProperty("interlacedFieldOrder") final String _interlacedFieldOrder) {
+        scanningType = ScanningType.getMatching(_scanningType);
+        interlacedFieldOrder = InterlacedFieldOrder.getMatching(_interlacedFieldOrder);
     }
 
     public ScanningType getScanningType() {

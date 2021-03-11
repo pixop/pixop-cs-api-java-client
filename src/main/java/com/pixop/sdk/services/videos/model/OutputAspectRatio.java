@@ -1,12 +1,14 @@
 package com.pixop.sdk.services.videos.model;
 
-public enum ScanningType {
-    PROGRESSIVE("progressive"),
-    INTERLACED("interlaced");
+public enum OutputAspectRatio {
+    AR_DISPLAY("display"),
+    AR_STORAGE("storage"),
+    AR_16_9("16:9"),
+    AR_4_3("4:3");
 
     private final String key;
 
-    ScanningType(final String key) {
+    OutputAspectRatio(final String key) {
         this.key = key;
     }
 
@@ -14,9 +16,9 @@ public enum ScanningType {
         return key;
     }
 
-    public static ScanningType getMatching(final String name) {
+    public static OutputAspectRatio getMatching(final String name) {
         if (name != null)
-            for (final ScanningType type : values())
+            for (final OutputAspectRatio type : values())
                 if (type.getKey().equalsIgnoreCase(name))
                     return type;
         return null;

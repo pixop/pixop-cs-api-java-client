@@ -38,6 +38,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pixop.sdk.services.videos.model.InterlacedFieldOrder;
+import com.pixop.sdk.services.videos.model.ScanningType;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -45,8 +47,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author  Paul Cook
- * @version
+ * @author Paul Cook
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public final class ProcessVideoRequest implements java.io.Serializable {
@@ -61,6 +62,9 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
     @JsonProperty("dnxhdHrProfile")
     private final String dnxHdHrProfile;
+
+    @JsonProperty("scanning")
+    private final Scanning scanning;
 
     @JsonProperty("chromaSubsampling")
     private final ChromaSubsampling chromaSubsampling;
@@ -86,25 +90,31 @@ public final class ProcessVideoRequest implements java.io.Serializable {
     @JsonProperty("clarityBoost")
     private final String clarityBoost;
 
+    @JsonProperty("postProcessor")
+    private final String postProcessor;
+
     @JsonProperty("range")
     private final Range range;
 
     @JsonCreator
-    private ProcessVideoRequest(@JsonProperty("mediaContainerCodec")final MediaContainerCodec mediaContainerCodec,
-                                @JsonProperty("appleProresProfile")final String appleProResProfile,
-                                @JsonProperty("dnxhdHrProfile")final String dnxHdHrProfile,
-                                @JsonProperty("chroma_subsampling")final ChromaSubsampling chromaSubsampling,
-                                @JsonProperty("bitrate")final BitRate bitrate,
-                                @JsonProperty("deinterlacer")final String deinterlacer,
-                                @JsonProperty("denoiser")final String denoiser,
-                                @JsonProperty("stabilizer")final String stabilizer,
-                                @JsonProperty("scaler")final String scaler,
-                                @JsonProperty("resolution")final Resolution resolution,
-                                @JsonProperty("clarityBoost")final String clarityBoost,
-                                @JsonProperty("range")final Range range) {
+    private ProcessVideoRequest(@JsonProperty("mediaContainerCodec") final MediaContainerCodec mediaContainerCodec,
+                                @JsonProperty("appleProresProfile") final String appleProResProfile,
+                                @JsonProperty("dnxhdHrProfile") final String dnxHdHrProfile,
+                                @JsonProperty("scanning") final Scanning scanning,
+                                @JsonProperty("chroma_subsampling") final ChromaSubsampling chromaSubsampling,
+                                @JsonProperty("bitrate") final BitRate bitrate,
+                                @JsonProperty("deinterlacer") final String deinterlacer,
+                                @JsonProperty("denoiser") final String denoiser,
+                                @JsonProperty("stabilizer") final String stabilizer,
+                                @JsonProperty("scaler") final String scaler,
+                                @JsonProperty("resolution") final Resolution resolution,
+                                @JsonProperty("clarityBoost") final String clarityBoost,
+                                @JsonProperty("postProcessor") final String postProcessor,
+                                @JsonProperty("range") final Range range) {
         this.mediaContainerCodec = mediaContainerCodec;
         this.appleProResProfile = appleProResProfile;
         this.dnxHdHrProfile = dnxHdHrProfile;
+        this.scanning = scanning;
         this.chromaSubsampling = chromaSubsampling;
         this.bitrate = bitrate;
         this.deinterlacer = deinterlacer;
@@ -113,6 +123,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         this.scaler = scaler;
         this.resolution = resolution;
         this.clarityBoost = clarityBoost;
+        this.postProcessor = postProcessor;
         this.range = range;
     }
 
@@ -126,6 +137,10 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
     public String getDnxHdHrProfile() {
         return this.dnxHdHrProfile;
+    }
+
+    public Scanning getScanning() {
+        return scanning;
     }
 
     public ChromaSubsampling getChromaSubsampling() {
@@ -160,6 +175,10 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         return this.clarityBoost;
     }
 
+    public String getPostProcessor() {
+        return this.postProcessor;
+    }
+
     public Range getRange() {
         return this.range;
     }
@@ -182,6 +201,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         private MediaContainerCodec mediaContainerCodec;
         private String appleProResProfile;
         private String dnxHdHrProfile;
+        private Scanning scanning;
         private ChromaSubsampling chromaSubsampling;
         private BitRate bitrate;
         private String deinterlacer;
@@ -190,21 +210,24 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         private String scaler;
         private Resolution resolution;
         private String clarityBoost;
+        private String postProcessor;
         private Range range;
 
         public ProcessVideoRequest build() {
             return new ProcessVideoRequest(this.mediaContainerCodec,
-                                           this.appleProResProfile,
-                                           this.dnxHdHrProfile,
-                                           this.chromaSubsampling,
-                                           this.bitrate,
-                                           this.deinterlacer,
-                                           this.denoiser,
-                                           this.stabilizer,
-                                           this.scaler,
-                                           this.resolution,
-                                           this.clarityBoost,
-                                           this.range);
+                    this.appleProResProfile,
+                    this.dnxHdHrProfile,
+                    this.scanning,
+                    this.chromaSubsampling,
+                    this.bitrate,
+                    this.deinterlacer,
+                    this.denoiser,
+                    this.stabilizer,
+                    this.scaler,
+                    this.resolution,
+                    this.clarityBoost,
+                    this.postProcessor,
+                    this.range);
         }
 
         public Builder withMediaContainerCodec(final MediaContainerCodec mediaContainerCodec) {
@@ -219,6 +242,11 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
         public Builder withDnxHdHrProfile(final DNXHD_HR_PROFILE dnxHdHrProfile) {
             this.dnxHdHrProfile = dnxHdHrProfile.name;
+            return this;
+        }
+
+        public Builder withScanning(final Scanning scanning) {
+            this.scanning = scanning;
             return this;
         }
 
@@ -262,6 +290,11 @@ public final class ProcessVideoRequest implements java.io.Serializable {
             return this;
         }
 
+        public Builder withPostProcessor(final POST_PROCESSOR postProcessor) {
+            this.postProcessor = postProcessor.name;
+            return this;
+        }
+
         public Builder withRange(final Range range) {
             this.range = range;
             return this;
@@ -286,8 +319,8 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         }
 
         @JsonCreator
-        private MediaContainerCodec(@JsonProperty("container")final String container,
-                                    @JsonProperty("codec")final String codec) {
+        private MediaContainerCodec(@JsonProperty("container") final String container,
+                                    @JsonProperty("codec") final String codec) {
             this.container = container;
             this.codec = codec;
         }
@@ -305,19 +338,20 @@ public final class ProcessVideoRequest implements java.io.Serializable {
     public enum CONTAINER {
 
         QUICKTIME_MOV("mov", CODEC.H264_AVC,
-                             CODEC.APPLE_PRORES,
-                             CODEC.AVID_DNXHD_HR,
-                             CODEC.H265_HEVC,
-                             CODEC.MPEG_2),
+                CODEC.APPLE_PRORES,
+                CODEC.AVID_DNXHD_HR,
+                CODEC.H265_HEVC,
+                CODEC.MPEG_2,
+                CODEC.FFV_1),
         MATERIAL_EXCHANGE_FORMAT("mxf", CODEC.H264_AVC,
-                                        CODEC.XDCAM,
-                                        CODEC.MPEG_2,
-                                        CODEC.AVID_DNXHD_HR),
+                CODEC.XDCAM,
+                CODEC.MPEG_2,
+                CODEC.AVID_DNXHD_HR),
         MPEG_4("mp4", CODEC.H264_AVC,
-                      CODEC.H265_HEVC),
+                CODEC.H265_HEVC),
         MPEG_2("mts", CODEC.H264_AVC,
-                      CODEC.H265_HEVC,
-                      CODEC.MPEG_2);
+                CODEC.H265_HEVC,
+                CODEC.MPEG_2);
 
         private final String name;
         private final Set<CODEC> supportedCodecs;
@@ -325,7 +359,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         private CONTAINER(final String name, final CODEC... listOfSupportedCodecs) {
             this.name = name;
             final Set<CODEC> set = new HashSet<>();
-            for (final CODEC codec: listOfSupportedCodecs)
+            for (final CODEC codec : listOfSupportedCodecs)
                 set.add(codec);
             this.supportedCodecs = Collections.unmodifiableSet(set);
         }
@@ -344,7 +378,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
         public static CONTAINER getMatching(final String name) {
             if (name != null)
-                for (final CONTAINER container: values())
+                for (final CONTAINER container : values())
                     if (container.name.equalsIgnoreCase(name))
                         return container;
             return null;
@@ -359,7 +393,8 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         AVID_DNXHD_HR("dnxhd"),
         XDCAM("xdcam"),
         H265_HEVC("hevc"),
-        MPEG_2("mpeg2");
+        MPEG_2("mpeg2"),
+        FFV_1("ffv1");
 
         private final String name;
 
@@ -373,7 +408,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
         public static CODEC getMatching(final String name) {
             if (name != null)
-                for (final CODEC codec: values())
+                for (final CODEC codec : values())
                     if (codec.name.equalsIgnoreCase(name))
                         return codec;
             return null;
@@ -402,7 +437,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
         public static APPLE_PRORES_PROFILE getMatching(final String name) {
             if (name != null)
-                for (final APPLE_PRORES_PROFILE profile: values())
+                for (final APPLE_PRORES_PROFILE profile : values())
                     if (profile.name.equalsIgnoreCase(name))
                         return profile;
             return null;
@@ -450,10 +485,100 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
         public static DNXHD_HR_PROFILE getMatching(final String name) {
             if (name != null)
-                for (final DNXHD_HR_PROFILE profile: values())
+                for (final DNXHD_HR_PROFILE profile : values())
                     if (profile.name.equalsIgnoreCase(name))
                         return profile;
             return null;
+        }
+
+    }
+
+    public static enum SCANNING_TAG {
+
+        SCANNING_AUTO("auto", null, null),
+        SCANNING_PROGRESSIVE("progressive", ScanningType.PROGRESSIVE, null),
+        SCANNING_INTERLACED_TFF("interlaced_tff", ScanningType.INTERLACED, InterlacedFieldOrder.TOP_FIRST),
+        SCANNING_INTERLACED_BFF("interlaced_bff", ScanningType.INTERLACED, InterlacedFieldOrder.BOTTOM_FIRST);
+
+        private final String name;
+        private final String scanningType;
+        private final String interlacedFieldOrder;
+
+        private SCANNING_TAG(final String name,
+                             final ScanningType scanningType,
+                             final InterlacedFieldOrder interlacedFieldOrder) {
+            this.name = name;
+            this.scanningType = scanningType != null ? scanningType.getKey() : null;
+            this.interlacedFieldOrder = interlacedFieldOrder != null ? interlacedFieldOrder.getKey() : null;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public String getScanningType() {
+            return scanningType;
+        }
+
+        public String getInterlacedFieldOrder() {
+            return interlacedFieldOrder;
+        }
+
+        public static SCANNING_TAG getMatching(final String name) {
+            if (name != null)
+                for (final SCANNING_TAG tag : values())
+                    if (tag.name.equalsIgnoreCase(name))
+                        return tag;
+            return null;
+        }
+
+    }
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static final class Scanning implements java.io.Serializable {
+
+        private static final long serialVersionUID = 1L;
+
+        @JsonProperty("tag")
+        private final String tag;
+
+        @JsonProperty("scanningType")
+        private final String scanningType;
+
+        @JsonProperty("interlacedFieldOrder")
+        private final String interlacedFieldOrder;
+
+        public Scanning(final SCANNING_TAG tag) {
+            this(tag.name,
+                    null,
+                    null);
+        }
+
+        public Scanning(final String scanningType, final String interlacedFieldOrder) {
+            this(null,
+                    scanningType,
+                    interlacedFieldOrder);
+        }
+
+        @JsonCreator
+        private Scanning(@JsonProperty("tag") final String tag,
+                         @JsonProperty("scanningType") final String scanningType,
+                         @JsonProperty("interlacedFieldOrder") final String interlacedFieldOrder) {
+            this.tag = tag;
+            this.scanningType = scanningType;
+            this.interlacedFieldOrder = interlacedFieldOrder;
+        }
+
+        public String getTag() {
+            return this.tag;
+        }
+
+        public String getScanningType() {
+            return this.scanningType;
+        }
+
+        public String getInterlacedFieldOrder() {
+            return this.interlacedFieldOrder;
         }
 
     }
@@ -479,7 +604,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
         public static YUV getMatching(final String name) {
             if (name != null)
-                for (final YUV yuv: values())
+                for (final YUV yuv : values())
                     if (yuv.name.equalsIgnoreCase(name))
                         return yuv;
             return null;
@@ -531,8 +656,8 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         }
 
         @JsonCreator
-        private ChromaSubsampling(@JsonProperty("yuv")final String yuv,
-                                  @JsonProperty("bits")final int bits) {
+        private ChromaSubsampling(@JsonProperty("yuv") final String yuv,
+                                  @JsonProperty("bits") final int bits) {
             this.yuv = yuv;
             this.bits = bits;
         }
@@ -564,7 +689,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         public static final BitRate BITRATE_1G = new BitRate(1000.0);
 
         @JsonCreator
-        private BitRate(@JsonProperty("mbps")final Double mbps) {
+        private BitRate(@JsonProperty("mbps") final Double mbps) {
             this.mbps = mbps;
         }
 
@@ -591,37 +716,63 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
     public static enum RESOLUTION_TAG {
 
-        RESOLUTION_HD_1080P("hd_1080p", 1920, 1080),
-        RESOLUTION_4k_UHD_2160p("uhd_4k", 3840, 2160),
-        RESOLUTION_8k_UHD_4320p("uhd_8k", 7680, 4320);
+        RESOLUTION_HD_1080P("hd_1080p", 1920, 1080, null),
+        RESOLUTION_UHD_4K("uhd_4k", 3840, 2160, null),
+        RESOLUTION_UHD_8K("uhd_8k", 7680, 4320, null),
+        RESOLUTION_2X("2x", null, null, 2.0),
+        RESOLUTION_3X("3x", null, null, 3.0),
+        RESOLUTION_4X("4x", null, null, 4.0);
 
         private final String name;
-        private final int width;
-        private final int height;
+        private final Integer width;
+        private final Integer height;
+        private final Double factor;
 
         private RESOLUTION_TAG(final String name,
-                               final int width,
-                               final int height) {
+                               final Integer width,
+                               final Integer height,
+                               final Double factor) {
             this.name = name;
             this.width = width;
             this.height = height;
+            this.factor = factor;
         }
 
         public String getName() {
             return this.name;
         }
 
-        public int getWidth() {
+        public Integer getWidth() {
             return this.width;
         }
 
-        public int getHeight() {
+        public Integer getHeight() {
             return this.height;
+        }
+
+        public Double getFactor() {
+            return this.factor;
+        }
+
+        public int computeTargetWidth(final int sourceWidth) {
+            if (factor != null) {
+                return (int) Math.round((double) sourceWidth * factor);
+            }
+
+            return width;
+        }
+
+        public int computeTargetHeight(final int sourceHeight) {
+            if (factor != null) {
+                return (int) Math.round((double) sourceHeight * factor);
+            }
+
+            return height;
         }
 
         public static RESOLUTION_TAG getMatching(final String name) {
             if (name != null)
-                for (final RESOLUTION_TAG tag: values())
+                for (final RESOLUTION_TAG tag : values())
                     if (tag.name.equalsIgnoreCase(name))
                         return tag;
             return null;
@@ -635,11 +786,8 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         private static final long serialVersionUID = 3655565988146062739L;
 
         public static final Resolution RESOLUTION_HD_1080P = new Resolution(RESOLUTION_TAG.RESOLUTION_HD_1080P);
-        public static final Resolution RESOLUTION_4k_UHD_2160p = new Resolution(RESOLUTION_TAG.RESOLUTION_4k_UHD_2160p);
-        public static final Resolution RESOLUTION_8k_UHD_4320p = new Resolution(RESOLUTION_TAG.RESOLUTION_8k_UHD_4320p);
-        public static final Resolution RESOLUTION_1706x960 = new Resolution(1706, 960);
-        public static final Resolution RESOLUTION_2559x1440 = new Resolution(2559, 1440);
-        public static final Resolution RESOLUTION_3412x1920 = new Resolution(3412, 1920);
+        public static final Resolution RESOLUTION_UHD_4K = new Resolution(RESOLUTION_TAG.RESOLUTION_UHD_4K);
+        public static final Resolution RESOLUTION_UHD_8K = new Resolution(RESOLUTION_TAG.RESOLUTION_UHD_8K);
 
         @JsonProperty("tag")
         private final String tag;
@@ -650,25 +798,32 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         @JsonProperty("height")
         private final Integer height;
 
+        @JsonProperty("aspectRatioTag")
+        private final String aspectRatioTag;
+
         public Resolution(final RESOLUTION_TAG tag) {
             this(tag.name,
-                 null,
-                 null);
+                    null,
+                    null,
+                    null);
         }
 
         public Resolution(final int width, final int height) {
             this(null,
-                 width,
-                 height);
+                    width,
+                    height,
+                    null);
         }
 
         @JsonCreator
-        private Resolution(@JsonProperty("tag")final String tag,
-                           @JsonProperty("width")final Integer width,
-                           @JsonProperty("height")final Integer height) {
+        private Resolution(@JsonProperty("tag") final String tag,
+                           @JsonProperty("width") final Integer width,
+                           @JsonProperty("height") final Integer height,
+                           @JsonProperty("aspectRatioTag") final String aspectRatioTag) {
             this.tag = tag;
             this.width = width;
             this.height = height;
+            this.aspectRatioTag = aspectRatioTag;
         }
 
         public String getTag() {
@@ -681,6 +836,10 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
         public Integer getHeight() {
             return this.height;
+        }
+
+        public String getAspectRatioTag() {
+            return this.aspectRatioTag;
         }
 
     }
@@ -704,7 +863,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
         public static DE_INTERLACER getMatching(final String name) {
             if (name != null)
-                for (final DE_INTERLACER deInterlacer: values())
+                for (final DE_INTERLACER deInterlacer : values())
                     if (deInterlacer.name.equalsIgnoreCase(name))
                         return deInterlacer;
             return null;
@@ -729,7 +888,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
         public static DE_NOISER getMatching(final String name) {
             if (name != null)
-                for (final DE_NOISER deNoiser: values())
+                for (final DE_NOISER deNoiser : values())
                     if (deNoiser.name.equalsIgnoreCase(name))
                         return deNoiser;
             return null;
@@ -753,7 +912,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
         public static STABILIZER getMatching(final String name) {
             if (name != null)
-                for (final STABILIZER stabilizer: values())
+                for (final STABILIZER stabilizer : values())
                     if (stabilizer.name.equalsIgnoreCase(name))
                         return stabilizer;
             return null;
@@ -779,7 +938,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
         public static SCALER getMatching(final String name) {
             if (name != null)
-                for (final SCALER scaler: values())
+                for (final SCALER scaler : values())
                     if (scaler.name.equalsIgnoreCase(name))
                         return scaler;
             return null;
@@ -815,12 +974,36 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
         public static CLARITY_BOOST getMatching(final String name) {
             if (name != null)
-                for (final CLARITY_BOOST clarityBoost: values()) {
+                for (final CLARITY_BOOST clarityBoost : values()) {
                     if (clarityBoost.name.equalsIgnoreCase(name))
                         return clarityBoost;
                     if (name.equals(clarityBoost.level + ""))
                         return clarityBoost;
                 }
+            return null;
+        }
+
+    }
+
+    public static enum POST_PROCESSOR {
+
+        PIXOP_FILM_GRAIN("filmgrain");
+
+        private final String name;
+
+        private POST_PROCESSOR(final String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public static POST_PROCESSOR getMatching(final String name) {
+            if (name != null)
+                for (final POST_PROCESSOR postProcessor : values())
+                    if (postProcessor.name.equalsIgnoreCase(name))
+                        return postProcessor;
             return null;
         }
 
@@ -838,8 +1021,8 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         private final Integer endPositionMilliseconds;
 
         @JsonCreator
-        private Range(@JsonProperty("startPositionMilliseconds")final int startPositionMilliseconds,
-                      @JsonProperty("endPositionMilliseconds")final int endPositionMilliseconds) {
+        private Range(@JsonProperty("startPositionMilliseconds") final int startPositionMilliseconds,
+                      @JsonProperty("endPositionMilliseconds") final int endPositionMilliseconds) {
             this.startPositionMilliseconds = startPositionMilliseconds;
             this.endPositionMilliseconds = endPositionMilliseconds;
         }
@@ -869,7 +1052,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
             public Range build() {
                 return new Range(this.startPositionMilliseconds,
-                                 this.endPositionMilliseconds);
+                        this.endPositionMilliseconds);
             }
 
         }

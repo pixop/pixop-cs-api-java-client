@@ -90,6 +90,12 @@ public final class ProcessVideoRequest implements java.io.Serializable {
     @JsonProperty("clarityBoost")
     private final String clarityBoost;
 
+    @JsonProperty("frameRateConverter")
+    private final String frameRateConverter;
+
+    @JsonProperty("frameRate")
+    private final FrameRate frameRate;
+
     @JsonProperty("postProcessor")
     private final String postProcessor;
 
@@ -109,6 +115,8 @@ public final class ProcessVideoRequest implements java.io.Serializable {
                                 @JsonProperty("scaler") final String scaler,
                                 @JsonProperty("resolution") final Resolution resolution,
                                 @JsonProperty("clarityBoost") final String clarityBoost,
+                                @JsonProperty("frameRateConverter") final String frameRateConverter,
+                                @JsonProperty("frameRate") final FrameRate frameRate,
                                 @JsonProperty("postProcessor") final String postProcessor,
                                 @JsonProperty("range") final Range range) {
         this.mediaContainerCodec = mediaContainerCodec;
@@ -123,6 +131,8 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         this.scaler = scaler;
         this.resolution = resolution;
         this.clarityBoost = clarityBoost;
+        this.frameRateConverter = frameRateConverter;
+        this.frameRate = frameRate;
         this.postProcessor = postProcessor;
         this.range = range;
     }
@@ -175,6 +185,14 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         return this.clarityBoost;
     }
 
+    public String getFrameRateConverter() {
+        return this.frameRateConverter;
+    }
+
+    public FrameRate getFrameRate() {
+        return this.frameRate;
+    }
+
     public String getPostProcessor() {
         return this.postProcessor;
     }
@@ -210,6 +228,8 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         private String scaler;
         private Resolution resolution;
         private String clarityBoost;
+        private String frameRateConverter;
+        private FrameRate frameRate;
         private String postProcessor;
         private Range range;
 
@@ -226,6 +246,8 @@ public final class ProcessVideoRequest implements java.io.Serializable {
                     this.scaler,
                     this.resolution,
                     this.clarityBoost,
+                    this.frameRateConverter,
+                    this.frameRate,
                     this.postProcessor,
                     this.range);
         }
@@ -289,6 +311,17 @@ public final class ProcessVideoRequest implements java.io.Serializable {
             this.clarityBoost = clarityBoost.name;
             return this;
         }
+
+        public Builder withFrameRateConverter(final FRAME_RATE_CONVERTER frameRateConverter) {
+            this.frameRateConverter = frameRateConverter.name;
+            return this;
+        }
+
+        public Builder withFrameRate(final FrameRate frameRate) {
+            this.frameRate = frameRate;
+            return this;
+        }
+
 
         public Builder withPostProcessor(final POST_PROCESSOR postProcessor) {
             this.postProcessor = postProcessor.name;
@@ -844,6 +877,91 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
     }
 
+    public static enum FRAME_RATE_TAG {
+
+        FRAME_RATE_FILM_NTSC("film_ntsc", 23.976),
+        FRAME_RATE_FILM("film", 24.0),
+        FRAME_RATE_VIDEO_PAL("video_pal", 25.0),
+        FRAME_RATE_VIDEO_NTSC("video_ntsc", 29.97),
+        FRAME_RATE_VIDEO_HD("video_hd", 30.0),
+        FRAME_RATE_VIDEO_PAL_FAST("video_pal_fast", 50.0),
+        FRAME_RATE_VIDEO_NTSC_FAST("video_ntsc_fast", 59.94),
+        FRAME_RATE_VIDEO_HD_FAST("video_hd_fast", 60.0);
+
+        private final String name;
+        private final Double fps;
+
+        private FRAME_RATE_TAG(final String name,
+                               final Double fps) {
+            this.name = name;
+            this.fps = fps;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public Double getFPS() {
+            return this.fps;
+        }
+
+        public static FRAME_RATE_TAG getMatching(final String name) {
+            if (name != null)
+                for (final FRAME_RATE_TAG tag : values())
+                    if (tag.name.equalsIgnoreCase(name))
+                        return tag;
+            return null;
+        }
+
+    }
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static final class FrameRate implements java.io.Serializable {
+
+        private static final long serialVersionUID = 34535758146062739L;
+
+        public static final FrameRate FRAME_RATE_FILM_NTSC = new FrameRate(FRAME_RATE_TAG.FRAME_RATE_FILM_NTSC);
+        public static final FrameRate FRAME_RATE_FILM = new FrameRate(FRAME_RATE_TAG.FRAME_RATE_FILM);
+        public static final FrameRate FRAME_RATE_VIDEO_PAL = new FrameRate(FRAME_RATE_TAG.FRAME_RATE_VIDEO_PAL);
+        public static final FrameRate FRAME_RATE_VIDEO_NTSC = new FrameRate(FRAME_RATE_TAG.FRAME_RATE_VIDEO_NTSC);
+        public static final FrameRate FRAME_RATE_VIDEO_HD = new FrameRate(FRAME_RATE_TAG.FRAME_RATE_VIDEO_HD);
+        public static final FrameRate FRAME_RATE_VIDEO_PAL_FAST = new FrameRate(FRAME_RATE_TAG.FRAME_RATE_VIDEO_PAL_FAST);
+        public static final FrameRate FRAME_RATE_VIDEO_NTSC_FAST = new FrameRate(FRAME_RATE_TAG.FRAME_RATE_VIDEO_NTSC_FAST);
+        public static final FrameRate FRAME_RATE_VIDEO_HD_FAST = new FrameRate(FRAME_RATE_TAG.FRAME_RATE_VIDEO_HD_FAST);
+
+        @JsonProperty("tag")
+        private final String tag;
+
+        @JsonProperty("fps")
+        private final Double fps;
+
+        public FrameRate(final FRAME_RATE_TAG tag) {
+            this(tag.name,
+                    null);
+        }
+
+        public FrameRate(final double fps) {
+            this(null,
+                    fps);
+        }
+
+        @JsonCreator
+        private FrameRate(@JsonProperty("tag") final String tag,
+                          @JsonProperty("fps") final Double fps) {
+            this.tag = tag;
+            this.fps = fps;
+        }
+
+        public String getTag() {
+            return this.tag;
+        }
+
+        public Double getFPS() {
+            return this.fps;
+        }
+
+    }
+
     public static enum DE_INTERLACER {
 
         PIXOP_DEINTERLACER("deint"),
@@ -980,6 +1098,32 @@ public final class ProcessVideoRequest implements java.io.Serializable {
                     if (name.equals(clarityBoost.level + ""))
                         return clarityBoost;
                 }
+            return null;
+        }
+
+    }
+
+    public static enum FRAME_RATE_CONVERTER {
+
+        CONSTANT_FPS("fps"),
+        FRAME_BLENDING("fblend"),
+        MOTION_COMPENSATION("mcinterpolate");
+
+        private final String name;
+
+        private FRAME_RATE_CONVERTER(final String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public static FRAME_RATE_CONVERTER getMatching(final String name) {
+            if (name != null)
+                for (final FRAME_RATE_CONVERTER frameRateConverter : values())
+                    if (frameRateConverter.name.equalsIgnoreCase(name))
+                        return frameRateConverter;
             return null;
         }
 

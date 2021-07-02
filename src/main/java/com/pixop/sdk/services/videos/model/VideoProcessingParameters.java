@@ -195,6 +195,7 @@ public class VideoProcessingParameters implements java.io.Serializable {
                 private Integer targetWidth;
                 private Integer targetHeight;
                 private String clarityBoost;
+                private Double fps;
 
                 public Properties() {
                 }
@@ -222,6 +223,14 @@ public class VideoProcessingParameters implements java.io.Serializable {
 
                 public void setClarityBoost(final String clarityBoost) {
                     this.clarityBoost = clarityBoost;
+                }
+
+                public Double getFPS() {
+                    return this.fps;
+                }
+
+                public void setFPS(final Double fps) {
+                    this.fps = fps;
                 }
             }
 

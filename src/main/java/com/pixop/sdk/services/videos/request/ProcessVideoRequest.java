@@ -1040,8 +1040,9 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
     public static enum SCALER {
 
-        PIXOP_SUPER_RESOLUTION("pabsr1"),
+        PIXOP_DEEP_RESTORATION_2("dvres2"),
         PIXOP_DEEP_RESTORATION("dvres"),
+        PIXOP_SUPER_RESOLUTION("pabsr1"),
         BICUBIC_INTERPOLATION("scale");
 
         private final String name;

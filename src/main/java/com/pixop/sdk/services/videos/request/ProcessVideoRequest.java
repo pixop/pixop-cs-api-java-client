@@ -752,6 +752,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         RESOLUTION_HD_1080P("hd_1080p", 1920, 1080, null),
         RESOLUTION_UHD_4K("uhd_4k", 3840, 2160, null),
         RESOLUTION_UHD_8K("uhd_8k", 7680, 4320, null),
+        RESOLUTION_NO_SCALING("no_scaling", null, null, 1.0),
         RESOLUTION_2X("2x", null, null, 2.0),
         RESOLUTION_3X("3x", null, null, 3.0),
         RESOLUTION_4X("4x", null, null, 4.0);

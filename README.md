@@ -15,13 +15,13 @@ For Apache Maven pom-file:
     <dependency>
       <groupId>com.pixop</groupId>
       <artifactId>pixop-api-sdk</artifactId>
-      <version>4.1.0</version>
+      <version>4.2.0</version>
     </dependency>
 ```
 
 Gradle Groovy DSL:
 ```
-implementation 'com.pixop:pixop-api-sdk:4.1.0'
+implementation 'com.pixop:pixop-api-sdk:4.2.0'
 ```
 
 ## Essential snippets

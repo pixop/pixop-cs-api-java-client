@@ -887,7 +887,8 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         FRAME_RATE_VIDEO_HD("video_hd", 30.0),
         FRAME_RATE_VIDEO_PAL_FAST("video_pal_fast", 50.0),
         FRAME_RATE_VIDEO_NTSC_FAST("video_ntsc_fast", 59.94),
-        FRAME_RATE_VIDEO_HD_FAST("video_hd_fast", 60.0);
+        FRAME_RATE_VIDEO_HD_FAST("video_hd_fast", 60.0),
+        FRAME_RATE_VIDEO_UHD_FAST("video_uhd_fast", 120.0);
 
         private final String name;
         private final Double fps;
@@ -929,6 +930,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
         public static final FrameRate FRAME_RATE_VIDEO_PAL_FAST = new FrameRate(FRAME_RATE_TAG.FRAME_RATE_VIDEO_PAL_FAST);
         public static final FrameRate FRAME_RATE_VIDEO_NTSC_FAST = new FrameRate(FRAME_RATE_TAG.FRAME_RATE_VIDEO_NTSC_FAST);
         public static final FrameRate FRAME_RATE_VIDEO_HD_FAST = new FrameRate(FRAME_RATE_TAG.FRAME_RATE_VIDEO_HD_FAST);
+        public static final FrameRate FRAME_RATE_VIDEO_UHD_FAST = new FrameRate(FRAME_RATE_TAG.FRAME_RATE_VIDEO_UHD_FAST);
 
         @JsonProperty("tag")
         private final String tag;
@@ -1069,7 +1071,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
     public static enum CLARITY_BOOST {
 
         NONE("none", 0),
-        MARGIINAL("marginal", 1),
+        MARGINAL("marginal", 1),
         VERY_LOW("very_low", 2),
         LOW("low", 3),
         MEDIUM("medium", 4),
@@ -1107,6 +1109,7 @@ public final class ProcessVideoRequest implements java.io.Serializable {
 
     public static enum FRAME_RATE_CONVERTER {
 
+        PIXOP_FRAME_RATE_CONVERSION("vfi"),
         CONSTANT_FPS("fps"),
         FRAME_BLENDING("fblend"),
         MOTION_COMPENSATION("mcinterpolate");

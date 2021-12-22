@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.pixop</groupId>
   <artifactId>pixop-api-sdk</artifactId>
-  <version>4.2.0</version>
+  <version>4.3.0</version>
   <name>${project.groupId}:${project.artifactId}</name>
   <description>Pixop Video Processing API client SDK for Java 8</description>
   <url>https://github.com/pixop/pixop-cs-api-java-client</url>
